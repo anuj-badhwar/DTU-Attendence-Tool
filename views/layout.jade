@@ -23,21 +23,21 @@ html
                 a(href='/register') Register
             if user
               li(class=(title=='Dashboard'?'active':''))
-                a(href='/teacher/dashboard') Dashboard
+                a(href='/'+userType+'/dashboard') Dashboard
               if user
                 li(class=(title=='classes'?'active':''))
-                  a(href='/teacher/classes') Classes
+                  a(href='/'+userType+'/classes') Classes
                 li(class=(title=='search'?'active':''))
-                  a(href='/teacher/report') Report
+                  a(href='/'+userType+'/report') Report
 
           if user
             ul.nav.navbar-nav.navbar-right
               li
-                a(href='/users/logout')
+                a(href='/logout')
                   | Logout
                   span.sr-only (current)
     .container
-      
+      !=messages()
       block content
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')
     script(src='javascripts/bootstrap.js')
