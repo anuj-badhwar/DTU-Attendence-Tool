@@ -1,10 +1,15 @@
-var express = require('express')
+var express = require('express');
 var router = express.Router();
+var index = require('./index');
 
-router.get('/classes',function(req,res){
-  res.render('classes',{
+var auth = index.requireRole;
+
+router.get('/classes',auth('teacher'),function(req,res){
+
+    res.render('classes',{
     title:'classes'
   })
+
 })
 
 module.exports = router

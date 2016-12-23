@@ -38,7 +38,7 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-passport.use(new LocalStrategy(function(username, password, done){
+passport.use('local',new LocalStrategy(function(username, password, done){
   User.findUser(username, function(err, user){
     if(err) throw err;
     if(!user){
@@ -87,7 +87,7 @@ router.get('/logout',function(req,res){
 
 var requireRole = function(role) {
   return function(req, res, next) {
-    if(req.user && req.user.userType == role)
+    if(req.isAuthenticated() && req.user && req.user.userType == role)
       next();
     else
       res.send('UNAUTHORISED');
