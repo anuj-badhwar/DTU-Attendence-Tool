@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  .details
+    p
+      | Your Details : 
+    .detail-group
+      b Name : #{data.name}
+    .detail-group
+      b Email : #{data.email}
+    .detail-group
+      b User Type : #{data.userType} 
+    br
+    .detail-group
+    if data.userType='teacher'
+      b Classes : 
+      ol
+        each cls in data.teacherClasses
+          li 
+            ul
+              li= cls.class
+              li= cls.day
+              li= cls.time
+              br
+    hr
+  .row
+    .btn.btn-primary.col-md-2 Add Class
+    .btn.btn-danger.col-md-2.col-md-offset-2 Remove Class
+  hr

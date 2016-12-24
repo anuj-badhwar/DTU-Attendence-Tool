@@ -1,7 +1,7 @@
 doctype html
 html
   head
-    title Inventory Management System
+    title DTU Attendence
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/stylesheets/bootstrap.css')
   body
@@ -22,7 +22,7 @@ html
               li(class=(title=='register'?'active':''))
                 a(href='/register') Register
             if user
-              li(class=(title=='Dashboard'?'active':''))
+              li(class=(title=='dashboard'?'active':''))
                 a(href='/'+userType+'/dashboard') Dashboard
               if user
                 li(class=(title=='classes'?'active':''))

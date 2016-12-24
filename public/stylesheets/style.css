@@ -39,3 +39,9 @@ ul.error li{
     border-color: #ebccd1;
     list-style: none;
 }
+
+.classForm{
+  width:150px;
+  background-color: lightgray;
+  margin-left: 100px;
+}

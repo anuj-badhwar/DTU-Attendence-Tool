@@ -10,7 +10,8 @@ var UserSchema = new Schema({
       username: { type: String},
       password: { type: String},
       email: { type: String},
-      userType : {type : String}
+      userType : {type : String},
+      teacherClasses : {type: Array}
   });
 
 var User = module.exports = connection.model('user',UserSchema);
@@ -23,6 +24,12 @@ module.exports.findUser = function(username,cb){
   var query = {username: username};
 	User.findOne(query, cb);
 }
+
+/*
+module.exports.findUpdate = function(username,class,cb){
+  var query = {username: username};
+	User.findOneAndUpdate(query,{$push:{'teacherClasses':class}},{upsert:true},cb);
+}*/
 
 module.exports.comparePassword = function(pass1,pass2,cb){
     if(pass1!=pass2) cb(null,false);
