@@ -11,7 +11,8 @@ var UserSchema = new Schema({
       password: { type: String},
       email: { type: String},
       userType : {type : String},
-      teacherClasses : {type: Array}
+      teacherClasses : {type: Array}, // subject,day,time,
+      studentClasses : {type: Array}
   });
 
 var User = module.exports = connection.model('user',UserSchema);

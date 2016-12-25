@@ -1,24 +1,35 @@
 extends layout
 
 block content
-  center
-    h2 Please select the Class
   
-  form(method='POST',action='/teacher/findBatch',id='classForm')
-    .form-group
-      label Batch :
-      select.classForm(name='batch')
-        option(value='A1') A1
-        option(value='A2') A2
-        option(value='A3') A3
-        option(value='B1') A4
-        option(value='B2') A5
-        
-    .form-group
-      label Subject :
-      select.classForm(name='subject')
-        option(value='DM201') DM201
-        option(value='MC203') MC203
-        option(value='PS205') PS205
-        option(value='MC207') MC207
-    input.btn.btn-primary(type='submit',value='Submit')
+  if !students
+    h2 Please select the Class
+    form(method='POST',action='/teacher/findBatch',id='classForm')
+      .form-group
+        label Batch :
+        select.classForm(name='batch')
+          option(value='A1') A1
+          option(value='A2') A2
+          option(value='A3') A3
+          option(value='B1') A4
+          option(value='B2') A5
+          
+      .form-group
+        label Subject :
+        select.classForm(name='subject')
+          option(value='DM201') DM201
+          option(value='MC203') MC203
+          option(value='PS205') PS205
+          option(value='MC207') MC207
+      input.btn.btn-primary(type='submit',value='Submit')
+  
+  if students
+    h2(style='margin-left:250px') Please mark the Absentees
+    form.studentList(action='/teacher/markAttendence',method='POST')
+      each student in students
+        .row.studentsList.col-md-4
+          input(type='checkbox',name='absent' value='#{student.roll}')
+          label #{student.roll} | #{student.name}    
+        .col-md-1
+      input.col-md-8.btn.btn-primary(type='submit',value='MARK ATTENDENCE',style="margin-left:20px")
+      hr

@@ -3,7 +3,8 @@ var router = express.Router();
 var index = require('./index');
 
 var auth = index.requireRole;
-var User = require('../models/user.js')
+var User = require('../models/user.js');
+var Student = require('../models/students.js')
 
 router.get('/classes',auth('teacher'),function(req,res){
 
@@ -31,5 +32,25 @@ router.post('/findBatch',function(req,res){
   var batch = req.body.batch;
   var subject = req.body.subject;
   console.log(subject + "   " + batch);
-})
+
+  Student.studentList(batch,function(err,list){
+    if(err) console.log(err);
+
+    console.log(list);
+    res.render('classes',{
+      user:req.user,
+      'students' : list,
+      title:'classes',
+      userType : req.user.userType
+    })
+  })
+});
+
+router.post('/markAttendence',function(req,res){
+    posts = req.body;
+    console.log(posts);
+    req.flash('success','Attendence marked successfully!');
+    res.redirect('/teacher/dashboard');
+});
+
 module.exports = router

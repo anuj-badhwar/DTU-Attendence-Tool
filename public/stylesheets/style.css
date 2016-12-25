@@ -45,3 +45,16 @@ ul.error li{
   background-color: lightgray;
   margin-left: 100px;
 }
+
+.studentList{
+  margin:25px;
+}
+
+.studentsList{
+  padding:15px;
+  border-radius: 6px;
+  background-color: #F5B039;
+  margin: 5px;
+  border: 1px solid black;
+  box-shadow:1px 2px 10px #888888;
+}
